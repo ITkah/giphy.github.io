@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Giphy</title>
+        <meta name="description" content="Giphy">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+
+        <div class="container" id="app">
+            <div class="wrapper-giphy">
+                <div class="form-wrapp">
+                    <input type="text" v-model="searchGif">
+                    <button @click="handleSearch">Search</button>
+                </div>
+                <div class="wrap-photo">
+                    <div v-for="gif in gifs">
+                        <img :src="gif.images.fixed_height.url" alt="gifs">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>
