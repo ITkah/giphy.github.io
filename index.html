@@ -10,6 +10,9 @@
     <body>
 
         <div class="container" id="app">
+            <div class="preloader" v-if="isLoading">
+                <img src="preloader.gif" alt="preloader">
+            </div>
             <div class="wrapper-giphy">
                 <div class="form-wrapp">
                     <input type="text" v-model="searchGif">

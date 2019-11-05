@@ -1,6 +1,22 @@
 .wrapper-giphy {
     padding: 20px;
 }
+
+.preloader {
+    background: rgba(255,255,255,.8);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
 .form-wrapp {
     display: flex;
     justify-content: center;
@@ -54,3 +70,4 @@ button:hover {
     max-width: 100%;
     height: auto;
 }
+
