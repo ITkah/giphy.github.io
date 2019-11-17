@@ -88,6 +88,7 @@ button:hover {
     color: #c51e3a;
     text-decoration: underline;
     transition: .3s;
+    font-family: sans-serif;
 }
 
 .col-gif {
