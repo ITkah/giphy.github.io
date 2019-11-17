@@ -1,24 +1,32 @@
 new Vue({
     el: '#app',
     data: {
-        searchGif: '',
         gifs: [],
+        errors: [],
         isLoading: true,
         isActive: false,
         searchGif: null,
-        errors: [],
+        limitGif: null
+    },
+    created() {
+        fetch('http://api.giphy.com/v1/gifs/trending?api_key=8yhIlmLJSr1eMYWfJxJ0sYRHKrSwapCe&limit=20')
+        .then((res) => {
+            return res.json()
+        })
+        .then((res) => {
+            this.gifs = res.data;
+            this.isLoading = false;
+        })
     },
     methods: {
         handleSearch() {
             this.errors = [];
-            if (this.searchGif < 1) {
-                this.errors.push('Вы ничего не ввели');
+            if (!this.searchGif || !this.limitGif) {
+                this.errors.push('Fields are empty');
             } else {
-
-                this.gifs = [];
                 this.isLoading = true;
-
-                fetch(`http://api.giphy.com/v1/gifs/search?q=${this.searchGif}&api_key=8yhIlmLJSr1eMYWfJxJ0sYRHKrSwapCe`)
+                this.gifs = [];
+                fetch(`http://api.giphy.com/v1/gifs/search?q=${this.searchGif}&api_key=8yhIlmLJSr1eMYWfJxJ0sYRHKrSwapCe&limit=${this.limitGif}`)
                 .then((res) => {
                     return res.json()
                 })
@@ -29,20 +37,10 @@ new Vue({
             }
         },
         onFocus() {
-           this.isActive = true; 
+            this.isActive = true; 
         },
         onBlur() {
             this.isActive = false; 
         }
-    },
-    created() {
-        fetch('http://api.giphy.com/v1/gifs/trending?api_key=8yhIlmLJSr1eMYWfJxJ0sYRHKrSwapCe')
-        .then((res) => {
-            return res.json()
-        })
-        .then((res) => {
-            this.gifs = res.data;
-            this.isLoading = false;
-        })
     }
 });

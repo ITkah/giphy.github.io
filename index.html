@@ -15,18 +15,15 @@
             </div>
             <div class="wrapper-giphy">
                 <form @submit.prevent="handleSearch" class="form-wrapp" method="post">
-                    <input type="text" @focus="onFocus" @blur="onBlur" v-bind:class="{ activeInput: isActive }" v-model="searchGif">
+                    <input type="text" @focus="onFocus" @blur="onBlur" v-bind:class="{ activeInput: isActive }" placeholder="Gifs" v-model="searchGif">
+                    <input type="number" @focus="onFocus" @blur="onBlur" v-bind:class="{ activeInput: isActive }" class="col-gif" placeholder="Col" v-model="limitGif">
                     <button type="submit">Search</button>
                 </form>
-                <p v-if="errors.length">
-                    <p v-for="error in errors" class="errors">{{ error }}</p>
-                </p>
+                <p v-for="error in errors" class="errors">{{ error }}</p>
                 <div class="wrap-photo">
-                    <div v-for="gif in gifs">
-                        <a :href="gif.url" class="photo-item">
-                            <img :src="gif.images.fixed_height.url" alt="gifs">
-                        </a>
-                    </div>
+                    <a :href="gif.url" v-for="gif in gifs" class="photo-item">
+                        <img :src="gif.images.fixed_height.url" alt="gifs">
+                    </a>
                 </div>
             </div>
         </div>
