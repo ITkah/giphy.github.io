@@ -14,20 +14,24 @@
                 <img src="preloader.gif" alt="preloader">
             </div>
             <div class="wrapper-giphy">
-                <div class="form-wrapp">
-                    <input type="text" v-model="searchGif">
-                    <button @click="handleSearch">Search</button>
-                </div>
+                <form @submit.prevent="handleSearch" class="form-wrapp" method="post">
+                    <input type="text" @focus="onFocus" @blur="onBlur" v-bind:class="{ activeInput: isActive }" v-model="searchGif">
+                    <button type="submit">Search</button>
+                </form>
+                <p v-if="errors.length">
+                    <p v-for="error in errors" class="errors">{{ error }}</p>
+                </p>
                 <div class="wrap-photo">
                     <div v-for="gif in gifs">
-                        <img :src="gif.images.fixed_height.url" alt="gifs">
+                        <a :href="gif.url" class="photo-item">
+                            <img :src="gif.images.fixed_height.url" alt="gifs">
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="js/index.js"></script>
     </body>
 </html>
