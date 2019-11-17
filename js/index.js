@@ -6,7 +6,7 @@ new Vue({
         isLoading: true,
         isActive: false,
         searchGif: null,
-        limitGif: null
+        limitGif: ''
     },
     created() {
         fetch('http://api.giphy.com/v1/gifs/trending?api_key=8yhIlmLJSr1eMYWfJxJ0sYRHKrSwapCe&limit=20')
@@ -21,8 +21,10 @@ new Vue({
     methods: {
         handleSearch() {
             this.errors = [];
-            if (!this.searchGif || !this.limitGif) {
-                this.errors.push('Fields are empty');
+            if (!this.searchGif) {
+                this.errors.push('Сhoose the gif you want');
+            } else if (this.limitGif <= 0) {
+                this.errors.push('Enter correct amount of numbers');
             } else {
                 this.isLoading = true;
                 this.gifs = [];
@@ -36,11 +38,8 @@ new Vue({
                 })
             }
         },
-        onFocus() {
-            this.isActive = true; 
+        scrollTop() {
+            window.scrollTo(0,0);
         },
-        onBlur() {
-            this.isActive = false; 
-        }
     }
 });

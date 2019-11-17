@@ -6,6 +6,7 @@
         <meta name="description" content="Giphy">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap&subset=cyrillic" rel="stylesheet">
     </head>
     <body>
 
@@ -13,19 +14,22 @@
             <div class="preloader" v-if="isLoading">
                 <img src="preloader.gif" alt="preloader">
             </div>
-            <div class="wrapper-giphy">
+            <div class="wrapper-giphy" @scroll.passive="onScroll">
                 <form @submit.prevent="handleSearch" class="form-wrapp" method="post">
-                    <input type="text" @focus="onFocus" @blur="onBlur" v-bind:class="{ activeInput: isActive }" placeholder="Gifs" v-model="searchGif">
-                    <input type="number" @focus="onFocus" @blur="onBlur" v-bind:class="{ activeInput: isActive }" class="col-gif" placeholder="Col" v-model="limitGif">
-                    <button type="submit">Search</button>
+                    <input type="text"  class="input" placeholder="gif name" v-model="searchGif">
+                    <input type="number" class="input col-gif" placeholder="quantity" v-model="limitGif">
+                    <button type="submit" title="Search Gif">Search</button>
                 </form>
                 <p v-for="error in errors" class="errors">{{ error }}</p>
                 <div class="wrap-photo">
                     <a :href="gif.url" v-for="gif in gifs" class="photo-item">
-                        <img :src="gif.images.fixed_height.url" alt="gifs">
+                        <img :src="gif.images.fixed_height.url" :title="gif.title" alt="gifs">
                     </a>
                 </div>
             </div>
+            <span class="top-scroll" title="Scroll top">
+                <img @click="scrollTop" src="top.svg">
+            </span>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
