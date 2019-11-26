@@ -1,38 +1,41 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Giphy</title>
-        <meta name="description" content="Giphy">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap&subset=cyrillic" rel="stylesheet">
-    </head>
-    <body>
 
-        <div class="container" id="app">
-            <div class="preloader" v-if="isLoading">
-                <img src="preloader.gif" alt="preloader">
-            </div>
-            <div class="wrapper-giphy" @scroll.passive="onScroll">
-                <form @submit.prevent="handleSearch" class="form-wrapp" method="post">
-                    <input type="text"  class="input" placeholder="gif name" v-model="searchGif">
-                    <input type="number" class="input col-gif" placeholder="quantity" v-model="limitGif">
-                    <button type="submit" title="Search Gif">Search</button>
-                </form>
-                <p v-for="error in errors" class="errors">{{ error }}</p>
-                <div class="wrap-photo">
-                    <a :href="gif.url" v-for="gif in gifs" class="photo-item">
-                        <img :src="gif.images.fixed_height.url" :title="gif.title" alt="gifs">
-                    </a>
-                </div>
-            </div>
-            <span class="top-scroll" title="Scroll top">
-                <img @click="scrollTop" src="top.svg">
-            </span>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Giphy</title>
+    <meta name="description" content="Giphy">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap&subset=cyrillic" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container" id="app">
+        <div class="preloader" v-if="isLoading">
+            <img src="preloader.gif" alt="preloader">
         </div>
+        <div class="wrapper-giphy" @scroll.passive="onScroll">
+            <form @submit.prevent="handleSearch" class="form-wrapp" method="post">
+                <input type="text" class="input" placeholder="gif name" min="1" v-model="searchGif" required>
+                <input type="number" class="input col-gif" placeholder="quantity" min="1" v-model="limitGif" required>
+                <button type="submit" title="Search Gif">Search</button>
+            </form>
+            <div class="wrap-photo">
+                <a :href="gif.url" v-for="gif in gifs" class="photo-item">
+                    <img :src="gif.images.fixed_height.url" :title="gif.title" alt="gifs">
+                </a>
+            </div>
+        </div>
+        <span class="top-scroll" title="Scroll top">
+            <img @click="scrollTop" src="top.svg">
+        </span>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="js/index.js"></script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
 </html>
