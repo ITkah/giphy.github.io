@@ -2,7 +2,6 @@ new Vue({
     el: '#app',
     data: {
         isLoading: true,
-        isActive: false,
         searchGif: null,
         limitGif: '',
         gifs: null,
@@ -34,7 +33,6 @@ new Vue({
                     alert(this.errorAlert);
                 })
                 .finally(() => this.isLoading = false);
-
         },
         scrollTop() {
             window.scrollTo(0, 0);
