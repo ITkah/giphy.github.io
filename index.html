@@ -16,7 +16,7 @@
         <div class="preloader" v-if="isLoading">
             <img src="preloader.gif" alt="preloader">
         </div>
-        <div class="wrapper-giphy" @scroll.passive="onScroll">
+        <div class="wrapper-giphy">
             <form @submit.prevent="handleSearch" class="form-wrapp" method="post">
                 <input type="text" class="input" placeholder="gif name" min="1" v-model="searchGif" required>
                 <input type="number" class="input col-gif" placeholder="quantity" min="1" v-model="limitGif" required>
