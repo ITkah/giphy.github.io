@@ -1,10 +1,19 @@
 body {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .wrapper-giphy {
     padding: 20px;
+}
+
+@media (max-width: 576px) {
+    .wrapper-giphy {
+        padding: 15px;
+    }
 }
 
 .preloader {
@@ -26,24 +35,24 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .wrap-photo {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-items: center;
-    grid-gap: 15px;
+    grid-gap: 20px;
 }
 
 .input {
     border: 1px solid #000;
     border-radius: 5px;
-    padding: 8px 12px;
+    padding: 8px 15px;
     outline: none;
     margin-right: 10px;
     box-sizing: border-box;
-    font-size: 1.1rem;
+    font: 400 1.1rem 'Roboto Condensed', sans-serif;
 }
 
 button {
@@ -53,11 +62,16 @@ button {
     border-radius: 5px;
     outline: none;
     cursor: pointer;
+    font: 700 1.15rem 'Roboto Condensed', sans-serif;
     letter-spacing: 1px;
-    font-size: 1.1rem;
-    font-weight: bold;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .4);
     transition: .3s;
+}
+
+@media (max-width: 576px) {
+    button {
+        font: 700 1.25rem 'Roboto Condensed', sans-serif;  
+    }
 }
 
 button:hover {
@@ -74,8 +88,8 @@ button:hover {
 }
 
 .photo-item {
-    height: auto;
-    max-width: 100%;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,6 +130,13 @@ button:hover {
     align-items: center;
     cursor: pointer;
     transition: .4s;
+}
+
+@media (max-width: 576px) {
+    .top-scroll {
+        right: 30px;
+        bottom: 25px;
+    }
 }
 
 .top-scroll img {

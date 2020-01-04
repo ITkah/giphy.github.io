@@ -1,3 +1,12 @@
+Vue.component('scroll',{
+    template: '#scropll-template',
+    methods: {
+        scrollTop() {
+            window.scrollTo(0, 0);
+        }
+    }
+});
+
 new Vue({
     el: '#app',
     data: {
@@ -9,7 +18,7 @@ new Vue({
     },
     created() {
         axios
-            .get('http://api.giphy.com/v1/gifs/trending?api_key=8yhIlmLJSr1eMYWfJxJ0sYRHKrSwapCe&limit=20')
+            .get('http://api.giphy.com/v1/gifs/trending?api_key=8yhIlmLJSr1eMYWfJxJ0sYRHKrSwapCe&limit=24')
             .then((response) => {
                 this.gifs = response.data.data
                 this.isLoading = false;
@@ -27,6 +36,8 @@ new Vue({
             axios
                 .get(`http://api.giphy.com/v1/gifs/search?q=${this.searchGif}&api_key=8yhIlmLJSr1eMYWfJxJ0sYRHKrSwapCe&limit=${this.limitGif}`)
                 .then((response) => {
+                    this.searchGif = '';
+                    this.limitGif = '';
                     this.gifs = response.data.data
                     this.isLoading = false;
                 })
@@ -35,9 +46,6 @@ new Vue({
                     this.isLoading = false;
                     alert(this.errorAlert);
                 })
-        },
-        scrollTop() {
-            window.scrollTo(0, 0);
-        },
+        }
     }
 });

@@ -7,7 +7,7 @@
     <meta name="description" content="Giphy">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap&subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
 </head>
 
 <body>
@@ -18,20 +18,24 @@
         </div>
         <div class="wrapper-giphy">
             <form @submit.prevent="handleSearch" class="form-wrapp" method="post">
-                <input type="text" class="input" placeholder="gif name" min="1" v-model="searchGif" required>
-                <input type="number" class="input col-gif" placeholder="quantity" min="1" v-model="limitGif" required>
+                <input type="text" class="input" placeholder="Gif name" min="1" v-model="searchGif" required>
+                <input type="number" class="input col-gif" placeholder="Quantity" min="1" v-model="limitGif" required>
                 <button type="submit" title="Search Gif">Search</button>
             </form>
             <div class="wrap-photo">
                 <a :href="gif.url" v-for="gif in gifs" class="photo-item">
-                    <img :src="gif.images.fixed_height.url" :title="gif.title" alt="gifs">
+                    <img :src="gif.images.fixed_height.url" :title="gif.title" alt="gifs" loading="lazy">
                 </a>
             </div>
         </div>
-        <span class="top-scroll" title="Scroll top">
-            <img @click="scrollTop" src="top.svg">
-        </span>
+        <scroll></scroll>
     </div>
+
+    <template id="scropll-template">
+        <div @click="scrollTop" class="top-scroll" title="Scroll top">
+            <img src="top.svg" alt="top">
+        </div>
+    </template>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
